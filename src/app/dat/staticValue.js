@@ -33,7 +33,7 @@ const mainSite = {
     username: "suresh",
     age: 23,
     working: "yes",
-    Jobtitle: "Marking",
+    Jobtitle: "Marketing",
     purchased: 7,
     totalsales: 5454
   }, {
@@ -44,6 +44,22 @@ const mainSite = {
     Jobtitle: "Govt employee",
     purchased: 3,
     totalsales: 5432
+  }, {
+    id: 12378,
+    username: "Mark",
+    age: 34,
+    working: "yes",
+    Jobtitle: "entrepreneur",
+    purchased: 3,
+    totalsales: 4534
+  },{
+    id: 8438,
+    username: "Steve",
+    age: 30,
+    working: "yes",
+    Jobtitle: "entrepreneur",
+    purchased: 4,
+    totalsales: 5455
   }]
 }
 export default mainSite;
