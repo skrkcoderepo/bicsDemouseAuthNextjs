@@ -1,95 +1,59 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+'use client'
 
+import {useState, useEffect, useContext} from 'react';
+import TokenCheck from '@/app/service/tokenCheck'
+import Cookies from 'js-cookie';
 export default function Home() {
-  return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.js</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
+  const [token, setToken]= useState("");
+  const [curd, setCurd] = useState({login: false}); 
 
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
+  function CheckLogin(){
+    if(TokenCheck(token)){
+      setCurd({...curd, login: true})
+    }
+  }
 
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+  function AuthMessage() {
+   console.log("success")
+    return <>
+      <h1>Welcome User</h1>
+    </>
+  }
+    return (
+        <>
+          <section id="hero" className="d-flex flex-column justify-content-center">
+            <div style={{ zIndex: 6 }} className="container aos-init aos-animate">
+              <h1>Demo on Nextjs </h1>
+              {(token == "bicsglobal")? 'login success': 'login Failed'}
+              <p>
+                <span className="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span>
+              </p>
+                <div className="container text-center">
+                  <div className="row">
+                    <div className="col-md-4 col-xs-12">
+                    <div className="social-links">
+                      <div className="row g-3 align-items-center">
+                      <div className="form-floating mb-3">
+                        <input type="password" 
+                        onChange={(e)=> setToken(e.target.value)}
+                        className="form-control" id="floatingInput" placeholder="your token" />
+                        <label  style={{paddingLeft: 50}}>Please Enter TOKEN</label>
+                      </div>
+                      <button type="button" 
+                      onClick={()=>{
+                        CheckLogin()
+                      }} className="btn btn-outline-dark">Login</button>
+                      </div>
+                    </div>
+                    { curd.login? <AuthMessage />: ""}
+                    </div>
+                    <div className="col-md-8 ">
+                    </div>
+                  </div>
+                </div>
+              
+            </div>
+          </section>
+        </>
+    );
 }
