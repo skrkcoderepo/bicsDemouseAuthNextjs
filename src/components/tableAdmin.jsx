@@ -1,4 +1,4 @@
-import { useMemo , useEffect, useState} from 'react';
+import { useMemo, useEffect, useState } from 'react';
 import {
   MaterialReactTable,
   useMaterialReactTable,
@@ -11,10 +11,10 @@ import UserModal from './userUpdateModal';
 
 const TableAdmin = () => {
   const [list, setList] = useState([])
-  const {userlist, setUserlist}= useContext(userContext);
-useEffect(()=>{
-  setList(userlist)
-},[userlist])
+  const { userlist, setUserlist } = useContext(userContext);
+  useEffect(() => {
+    setList(userlist)
+  }, [userlist])
   //should be memoized or stable
   const columns = useMemo(
     () => [
@@ -27,8 +27,8 @@ useEffect(()=>{
         accessorKey: 'id',
         header: 'modify',
         size: 10,
-        Cell: ({cell})=>{
-          return <><UserModal id={cell.getValue()}/></>
+        Cell: ({ cell }) => {
+          return <><UserModal id={cell.getValue()} /></>
         }
       },
       {
@@ -55,7 +55,7 @@ useEffect(()=>{
         accessorKey: 'totalsales',
         header: 'Spend',
         size: 10,
-        Cell: ({cell})=>{
+        Cell: ({ cell }) => {
           return <p>₹ {cell.getValue()}</p>
         }
       },
@@ -63,18 +63,18 @@ useEffect(()=>{
     [],
   );
 
-    const table =  useMaterialReactTable({
+  const table = useMaterialReactTable({
     columns,
-    data :userlist, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
+    data: userlist, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     paginationDisplayMode: 'pages',
     initialState: { pagination: { pageSize: 5 } },
   });
-  
 
-  return<> 
-  {userlist.length >0 ?<MaterialReactTable table={table} /> : <Spinner />}
- 
-  </> ;
+
+  return <>
+    {userlist.length > 0 ? <MaterialReactTable table={table} /> : <Spinner />}
+
+  </>;
 };
 
 export default TableAdmin;

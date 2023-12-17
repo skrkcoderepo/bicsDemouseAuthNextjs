@@ -1,8 +1,9 @@
-.contentCenter{
+.contentCenter {
     width: 200px;
     height: 600px;
     background-color: blue;
-    position: absolute; /*Can also be `fixed`*/
+    position: absolute;
+    /*Can also be `fixed`*/
     left: 0;
     right: 0;
     top: 0;
@@ -13,7 +14,8 @@
     max-height: 100%;
     overflow: auto;
 }
-.createUserbox{
+
+.createUserbox {
     background-image: linear-gradient(to top, #cfd9df 0%, #e2ebf0 100%);
 
-  }
+}

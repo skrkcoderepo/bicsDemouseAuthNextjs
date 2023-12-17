@@ -3,7 +3,7 @@
 import { Inter } from 'next/font/google'
 import $ from 'jquery';
 import Link from 'next/link';
-import {useState, useEffect}from 'react';
+import { useState, useEffect } from 'react';
 import './globals.css'
 
 import '../assets/vendor/aos/aos.css';
@@ -23,54 +23,54 @@ const inter = Inter({ subsets: ['latin'] })
 // }
 
 export default function RootLayout({ children }) {
-const [mobileSite, setMobileSite] = useState(false);
-const [userDetail, setUserDetail]= useState({
-  username: false,
-  email:"sample email",
-})
-const [userlist, setUserlist] = useState([])
-useEffect(()=>{
-    setUserlist(data.users)
-},[])
+    const [mobileSite, setMobileSite] = useState(false);
+    const [userDetail, setUserDetail] = useState({
+        username: false,
+        email: "sample email",
+    })
+    const [userlist, setUserlist] = useState([])
+    useEffect(() => {
+        setUserlist(data.users)
+    }, [])
 
-function setBodyClass(){
-     setMobileSite(!mobileSite);
-}
-  return (
-    <userContext.Provider value={{userlist, setUserlist}}>
-    <html lang="en">
-      <body className={ mobileSite ? "mobile-nav-active":""}>
+    function setBodyClass() {
+        setMobileSite(!mobileSite);
+    }
+    return (
+        <userContext.Provider value={{ userlist, setUserlist }}>
+            <html lang="en">
+                <body className={mobileSite ? "mobile-nav-active" : ""}>
 
-      <i onClick={()=>setBodyClass()} className="bi bi-list mobile-nav-toggle d-lg-none"></i>
-                {/* ======= Header ======= */}
-                <header
-                    id="header"
-                    className="d-flex flex-column justify-content-center"
-                >
-                    <nav id="navbar" className="navbar nav-menu">
-                        <ul>
-                            <li>
-                                <Link
-                                    href="/"
-                                    className="nav-link scrollto active"
-                                >
-                                    <i className="bx bx-home" />
-                                    <span>Home</span>
-                                </Link>
-                            </li>
-                            {/* <li>
+                    <i onClick={() => setBodyClass()} className="bi bi-list mobile-nav-toggle d-lg-none"></i>
+                    {/* ======= Header ======= */}
+                    <header
+                        id="header"
+                        className="d-flex flex-column justify-content-center"
+                    >
+                        <nav id="navbar" className="navbar nav-menu">
+                            <ul>
+                                <li>
+                                    <Link
+                                        href="/"
+                                        className="nav-link scrollto active"
+                                    >
+                                        <i className="bx bx-home" />
+                                        <span>Home</span>
+                                    </Link>
+                                </li>
+                                {/* <li>
                                 <Link href="/about" className="nav-link scrollto">
                                     <i className="bx bx-user" />
                                     <span>About</span>
                                 </Link>
                             </li> */}
-                            <li>
-                                <a href="/admin" className="nav-link scrollto">
-                                    <i className="bx bx-file-blank" />
-                                    <span>Simple CURD</span>
-                                </a>
-                            </li>
-                            {/* <li>
+                                <li>
+                                    <a href="/admin" className="nav-link scrollto">
+                                        <i className="bx bx-file-blank" />
+                                        <span>Simple CURD</span>
+                                    </a>
+                                </li>
+                                {/* <li>
                                 <a
                                     href="/profile"
                                     className="nav-link scrollto"
@@ -79,7 +79,7 @@ function setBodyClass(){
                                     <span>My Profile</span>
                                 </a>
                             </li> */}
-                            {/* <li>
+                                {/* <li>
                                 <a
                                     href="#services"
                                     className="nav-link scrollto"
@@ -88,7 +88,7 @@ function setBodyClass(){
                                     <span>Features</span>
                                 </a>
                             </li> */}
-                            {/* <li>
+                                {/* <li>
                                 <a
                                     href="#contact"
                                     className="nav-link scrollto"
@@ -97,11 +97,11 @@ function setBodyClass(){
                                     <span>Contact</span>
                                 </a>
                             </li> */}
-                        </ul>
-                    </nav>
-                </header>
-        {children}</body>
-    </html>
-    </userContext.Provider>
-  )
+                            </ul>
+                        </nav>
+                    </header>
+                    {children}</body>
+            </html>
+        </userContext.Provider>
+    )
 }
