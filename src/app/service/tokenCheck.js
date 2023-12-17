@@ -1,8 +1,9 @@
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
-import data from '@/app/dat/staticValue'
+import Data from '@/app/dat/staticValue';
+
 const browserCookie = { name: "token" }
-const jwtsecret="d#2sdh&23BGfdb#*)";
+const secret="d#2sdh&23BGfdb#*)";
 const siteToken= 'bicsglobal';
 const reportTemplate = (val) => {
     return {
@@ -13,19 +14,24 @@ const reportTemplate = (val) => {
     }
 }
 const cyptydata =(val) => {
-    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(val), 'my-secret-key@123').toString();
+    var ciphertext = CryptoJS.AES.encrypt(JSON.stringify(val), String(secret)).toString();
     console.log(ciphertext)
     return ciphertext;
 }
 
 const cryptVerify= () => {
-console.log(Cookies.get(data.cookie.name)) 
+    const code = Cookies.get('token');
+    if(code){
+        return  { status: true, data: true, error: null, message: 'Login success message' }
+    }else{
+         return{status : false, data: null, error: "Not Logged In", message: "Please login" }
+    }
 }
 export default  function TokenCheck(val){
     console.log("value called", val)
     if(String(val)==='bicsglobal'){
         const code = cyptydata({token: siteToken})
-        Cookies.set(browserCookie.name, code)
+        Cookies.set(Data.cookie.name, code)
         return true
     } else { return false}
 }

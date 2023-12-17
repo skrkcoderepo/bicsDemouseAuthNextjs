@@ -1,7 +1,7 @@
 'use client'
 
 import {useState, useEffect, useContext} from 'react';
-import TokenCheck from '@/app/service/tokenCheck'
+import TokenCheck ,{cryptVerify} from '@/app/service/tokenCheck'
 import Cookies from 'js-cookie';
 export default function Home() {
   const [token, setToken]= useState("");
@@ -24,11 +24,11 @@ export default function Home() {
           <section id="hero" className="d-flex flex-column justify-content-center">
             <div style={{ zIndex: 6 }} className="container aos-init aos-animate">
               <h1>Demo on Nextjs </h1>
-              {(token == "bicsglobal")? 'login success': 'login Failed'}
+              
               <p>
                 <span className="typed" data-typed-items="Designer, Developer, Freelancer, Photographer"></span>
               </p>
-                <div className="container text-center">
+                {/* <div className="container text-center">
                   <div className="row">
                     <div className="col-md-4 col-xs-12">
                     <div className="social-links">
@@ -50,7 +50,7 @@ export default function Home() {
                     <div className="col-md-8 ">
                     </div>
                   </div>
-                </div>
+                </div> */}
               
             </div>
           </section>

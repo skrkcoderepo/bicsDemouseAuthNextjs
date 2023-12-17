@@ -13,10 +13,8 @@ const TableAdmin = () => {
   const [list, setList] = useState([])
   const {userlist, setUserlist}= useContext(userContext);
 useEffect(()=>{
-  console.log("this is the user list",JSON.stringify(list))
   setList(userlist)
 },[userlist])
-useEffect(()=>{},[list])
   //should be memoized or stable
   const columns = useMemo(
     () => [

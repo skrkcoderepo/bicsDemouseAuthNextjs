@@ -58,19 +58,19 @@ function setBodyClass(){
                                     <span>Home</span>
                                 </Link>
                             </li>
-                            <li>
+                            {/* <li>
                                 <Link href="/about" className="nav-link scrollto">
                                     <i className="bx bx-user" />
                                     <span>About</span>
                                 </Link>
-                            </li>
+                            </li> */}
                             <li>
                                 <a href="/admin" className="nav-link scrollto">
                                     <i className="bx bx-file-blank" />
                                     <span>Simple CURD</span>
                                 </a>
                             </li>
-                            <li>
+                            {/* <li>
                                 <a
                                     href="/profile"
                                     className="nav-link scrollto"
@@ -78,8 +78,8 @@ function setBodyClass(){
                                     <i className="bx bx-book-content" />
                                     <span>My Profile</span>
                                 </a>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <a
                                     href="#services"
                                     className="nav-link scrollto"
@@ -87,8 +87,8 @@ function setBodyClass(){
                                     <i className="bx bx-server" />
                                     <span>Features</span>
                                 </a>
-                            </li>
-                            <li>
+                            </li> */}
+                            {/* <li>
                                 <a
                                     href="#contact"
                                     className="nav-link scrollto"
@@ -96,7 +96,7 @@ function setBodyClass(){
                                     <i className="bx bx-envelope" />
                                     <span>Contact</span>
                                 </a>
-                            </li>
+                            </li> */}
                         </ul>
                     </nav>
                 </header>

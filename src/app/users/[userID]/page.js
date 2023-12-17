@@ -46,8 +46,9 @@ const FindUser = (props)=>{
                             </div>
                             <hr className="line" />
                             <small className="mt-4">
-                                I am an android developer working at google Inc
-                                at california,USA
+                                <p>This is a sample User Detail Page </p>
+                                <p>Profile Image  are Random on every render </p>
+                                  <span>   </span>
                             </small>
                             <div className="social-buttons mt-5">
                                 <button className="neo-button">
