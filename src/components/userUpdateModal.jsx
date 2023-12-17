@@ -11,6 +11,7 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Chip from '@mui/material/Chip';
+import Link from 'next/link';
 
 const Transition = forwardRef(function Transition(props, ref) {
   return <Slide direction="up" ref={ref} {...props} />;
@@ -23,7 +24,6 @@ const RenderTemplate =(props) =>{
     const[form, setForm] = useState(props.val);
     const inputTextSize = 150;
     const edit= true;
-    const create= props.updateState.create ? true: true;
     function updateUser(e){
         setForm({...form, [e.target.name]:e.target.value})
         console.log(form)
@@ -80,7 +80,7 @@ const RenderTemplate =(props) =>{
           {props.updateState.update? <Button  variant="contained" color="success" onClick={updating}>Update</Button>:""}
           {props.updateState.create? <Button  variant="contained" color="success" onClick={addNewUser}>Create</Button>:""}
 
-          <Button  variant="contained" color="error" onClick={props.modal} create={false}>
+          <Button  variant="contained" color="error" onClick={props.modal} >
             {!props.updateState.update && !props.updateState.create ? "Close": "Close "}</Button>
         </DialogActions>
     </Box>
@@ -122,11 +122,11 @@ function UpdateMode(val){
 }
   return (
     <>
-      <Button variant="warning" onClick={()=>UpdateMode(3)}>
-      <i className="bi bi-pencil" />
+      <Button variant="outlined" color="success" onClick={()=>UpdateMode(3)}>
+      Edit &nbsp;&nbsp;<i className="bi bi-pencil" />
       </Button>
-      <Button variant="warning" onClick={()=>UpdateMode(1)}>
-      <i className="bi bi-eye"/>
+      <Button variant="outlined" color="warning" >
+      <Link href={`/users/${props.id}`}>View &nbsp;<i className="bi bi-eye"/></Link>
       </Button>
       <Dialog
         open={open}
@@ -138,7 +138,7 @@ function UpdateMode(val){
         <DialogTitle>{"User Details"}</DialogTitle>
         <DialogContent>
           <DialogContentText id="alert-dialog-slide-description">
-             <center>User Details are given below: This is just a demo for Next js USE CLIENT</center>
+             User Details are given below: This is just a demo for Next js USE CLIENT
              <br />
           </DialogContentText>
           <FindUser id={props.id} modal={handleClose}/>

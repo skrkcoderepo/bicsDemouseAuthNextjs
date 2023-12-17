@@ -13,3 +13,8 @@
     max-height: 100%;
     overflow: auto;
 }
+.createUserbox{
+background: linear-gradient(to bottom,  #ffffff 0%,#f1f1f1 50%,#e1e1e1 51%,#f6f6f6 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+
+
+}

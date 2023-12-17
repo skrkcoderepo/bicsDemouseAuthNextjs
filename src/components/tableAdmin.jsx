@@ -61,11 +61,6 @@ useEffect(()=>{},[list])
           return <p>₹ {cell.getValue()}</p>
         }
       },
-      {
-        accessorKey: 'working',
-        header: 'Working',
-        size: 10,
-      },
     ],
     [],
   );

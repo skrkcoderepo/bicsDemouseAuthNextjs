@@ -1,4 +1,7 @@
 const mainSite = {
+  cookie:{
+    name:"token"
+  },
     target: 60000,
     users: [{
         id:23324,

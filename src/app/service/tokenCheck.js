@@ -1,6 +1,6 @@
 import CryptoJS from 'crypto-js';
 import Cookies from 'js-cookie';
-
+import data from '@/app/dat/staticValue'
 const browserCookie = { name: "token" }
 const jwtsecret="d#2sdh&23BGfdb#*)";
 const siteToken= 'bicsglobal';
@@ -19,14 +19,7 @@ const cyptydata =(val) => {
 }
 
 const cryptVerify= () => {
-    const code =Cookies.get(browserCookie.name);
-    var bytes = CryptoJS.AES.decrypt(code, 'my-secret-key@123');
-    var decryptedData = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    if(decryptedData == siteToken){
-        return { status: true, data: true, error: null, message: 'Login success message' }
-        }
-    return {status : false, data: null, error: "Not Logged In", message: "Please login" }
- 
+console.log(Cookies.get(data.cookie.name)) 
 }
 export default  function TokenCheck(val){
     console.log("value called", val)
