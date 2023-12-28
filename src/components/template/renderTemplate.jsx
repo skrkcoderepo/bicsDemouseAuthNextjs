@@ -19,10 +19,6 @@ const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
 });
 
-const ModalText1 = (props) => {
-    return <><span>{props.text}</span></>;
-};
-
 const GenerateDialogModal = (props) => {
     const { userlist, curdMode, setUserlist, setCurdMode } =
         useContext(userContext);
@@ -146,18 +142,7 @@ const GenerateDialogModal = (props) => {
                             <Grid container spacing={2}>
                                 <Grid item xs={12} md={6}>
                                     <Grid container>
-                                        {/* <Grid item xs={5}>
-                                            <ModalText1 text="username" />
-                                        </Grid> */}
                                         <Grid item xs={12}>
-                                            {/* <InputText
-                                                disabled={edit}
-                                                name="username"
-                                                style={{ width: inputTextSize }}
-                                                type="text"
-                                                onChange={(e) => updateUser(e)}
-                                                value={form?.username}
-                                            /> */}
                                             <TextField
                                                 id="filled-multiline-flexible"
                                                 label="username"
@@ -172,26 +157,7 @@ const GenerateDialogModal = (props) => {
                                         </Grid>
                                     </Grid>
                                     <Grid container>
-                                        {/* <Grid item xs={0}>
-                                            <ModalText1 text="age" />
-                                        </Grid> */}
                                         <Grid item xs={12}>
-                                            {/* <input
-                                                disabled={edit}
-                                                name="age"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.age}
-                                            /> */}
-                                            {/* <InputText 
-                                                disabled={edit}
-                                                name="age"
-                                                style={{width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.age}
-                                                /> */}
                                             <TextField
                                                 id="filled-multiline-flexible"
                                                 label="age"
@@ -206,18 +172,7 @@ const GenerateDialogModal = (props) => {
                                         </Grid>
                                     </Grid>
                                     <Grid container>
-                                        {/* <Grid item xs={5}>
-                                            <ModalText1 text="Designation" />
-                                        </Grid> */}
                                         <Grid item xs={12}>
-                                            {/* <InputText
-                                                disabled={edit}
-                                                name="Jobtitle"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="text"
-                                                value={form?.Jobtitle}
-                                            /> */}
                                             <TextField
                                                 id="filled-multiline-flexible"
                                                 label= "Job Title"
@@ -232,18 +187,7 @@ const GenerateDialogModal = (props) => {
                                         </Grid>
                                     </Grid>
                                     <Grid container>
-                                        {/* <Grid item xs={5}>
-                                            <ModalText1 text="Purchased" />
-                                        </Grid> */}
                                         <Grid item xs={12}>
-                                            {/* <InputText
-                                                disabled={edit}
-                                                name="purchased"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.purchased}
-                                            /> */}
                                             <TextField
                                                 id="filled-multiline-flexible"
                                                 label="Purchased"
@@ -258,18 +202,7 @@ const GenerateDialogModal = (props) => {
                                         </Grid>
                                     </Grid>
                                     <Grid container>
-                                        {/* <Grid item xs={5}>
-                                            <ModalText1 text="spend" />
-                                        </Grid> */}
                                         <Grid item xs={12}>
-                                            {/* <InputText
-                                                disabled={edit}
-                                                name="totalsales"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.totalsales}
-                                            /> */}
                                             <TextField
                                                 id="filled-multiline-flexible"
                                                 label= "Total Sales"
