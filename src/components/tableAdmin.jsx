@@ -32,7 +32,7 @@ const TableAdmin = () => {
       {
         accessorKey: 'username',
         header: 'Name',
-        size: 10,
+        size: 20,
       },
       {
         accessorKey: 'age', //normal accessorKey

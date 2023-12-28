@@ -91,6 +91,7 @@ const GenerateDialogModal = (props) => {
     }
 
     function updating() {
+        console.log(checkid)
         userlist.find((val) => {
             if (val.id == checkid) {
                 val.username = form.username;
@@ -144,7 +145,6 @@ const GenerateDialogModal = (props) => {
                                     <li></li><li></li><li></li><li></li>
                                     <li></li><li></li><li></li><li></li>
                                     <li></li><li></li><li></li><li></li>
-                                    <li></li><li></li><li></li><li></li>
                                 </ul>
                             </div>
                             <Chip
@@ -173,6 +173,7 @@ const GenerateDialogModal = (props) => {
                                             label="username"
                                             variant="filled"
                                             disabled={edit}
+                                            required= {true}
                                             name="username"
                                             style={{ width: inputTextSize }}
                                             type="text"
@@ -188,6 +189,7 @@ const GenerateDialogModal = (props) => {
                                             label="age"
                                             variant="filled"
                                             disabled={edit}
+                                            required= {true}
                                             name="age"
                                             style={{ width: inputTextSize }}
                                             onChange={(e) => updateUser(e)}
@@ -203,6 +205,7 @@ const GenerateDialogModal = (props) => {
                                             label="Job Title"
                                             variant="filled"
                                             disabled={edit}
+                                            required= {true}
                                             name="Jobtitle"
                                             style={{ width: inputTextSize }}
                                             onChange={(e) => updateUser(e)}
@@ -218,6 +221,7 @@ const GenerateDialogModal = (props) => {
                                             label="Purchased"
                                             variant="filled"
                                             disabled={edit}
+                                            required= {true}
                                             name="purchased"
                                             style={{ width: inputTextSize }}
                                             onChange={(e) => updateUser(e)}
@@ -233,6 +237,7 @@ const GenerateDialogModal = (props) => {
                                             label="Total Sales"
                                             variant="filled"
                                             disabled={edit}
+                                            required= {true}
                                             name="totalsales"
                                             style={{ width: inputTextSize }}
                                             onChange={(e) => updateUser(e)}
