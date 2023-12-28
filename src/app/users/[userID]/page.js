@@ -4,7 +4,6 @@ import userContext from "@/context/usersContext";
 import Link from 'next/link'
 import Image from 'next/image'
 import { Button } from "@mui/material";
-import IconButton from '@mui/material/IconButton';
 import Fingerprint from '@mui/icons-material/Fingerprint';
 
 export default function UserPage(props) {
@@ -29,27 +28,34 @@ export default function UserPage(props) {
                                     {val.Jobtitle}
                                 </span>
                                 <div className="row mt-3 mb-3">
-                                    <div className="col-md-4">
-                                        <h5>Age</h5>
-                                        <span className="num">{val.age}</span>
+                                    <div className="col-md-3">
+                                        <div>
+                                            <p style={{textSize: "10px"}}><b>Age</b></p>
+                                            <span className="num">{val.age}</span>
+                                        </div>
+                                    </div>
+                                    <div className="col-md-5">
+                                        <div>
+                                            <p style={{textSize: "8px"}}><b>purchased</b></p>
+                                            <span className="num">{val.purchased}</span>
+                                        </div>
                                     </div>
                                     <div className="col-md-4">
-                                        <h5>purchased</h5>
-                                        <span className="num">{val.purchased}</span>
-                                    </div>
-                                    <div className="col-md-4">
-                                        <h5>Total Spend</h5>
-                                        <span className="num">
-                                            {val.totalsales}
-                                        </span>
+                                        <div>
+                                            <p style={{textSize: "8px"}}><b>Spend</b></p>
+                                            <span className="num">
+                                                ₹ {val.totalsales}
+                                            </span>
+                                        </div>
+
                                     </div>
                                 </div>
                                 <hr className="line" />
-                                <small className="mt-4">
+                                <div className="mt-4">
                                     <p>This is a sample User Detail Page </p>
                                     <p>Profile Image  are Random on every render </p>
-                                    <span>   </span>
-                                </small>
+                                </div>
+                               
                                 <div className="social-buttons mt-5">
                                     <button className="neo-button">
                                         <i className="fa fa-facebook fa-1x" />{' '}
@@ -66,13 +72,14 @@ export default function UserPage(props) {
                                     <button className="neo-button">
                                         <i className="fa fa-twitter fa-1x" />{' '}
                                     </button>
-                                </div>
+                                </div> 
                                 <div className="profile mt-5">
-                                    <Button className="profile_button px-5">
-                                        <Link href="/admin">       <IconButton aria-label="fingerprint" color="secondary">
+                                   <Link href="/admin" style={{color: 'black'}}> 
+                                    <Button variant='outlined' color="success" className="profile_button px-5">
                                             <Fingerprint />
-                                        </IconButton>Go back to Admin</Link>
+                                            Go back to Admin
                                     </Button>
+                                    </Link>
                                 </div>
                             </div>
                         </div>
@@ -81,9 +88,11 @@ export default function UserPage(props) {
                 return Profile;
             } else {
                 Profile = <>
+                    <div>
                     <h5>No user Found</h5>
                     <br />
                     <h6>For the given id : {props.id}</h6>
+                    </div>
                 </>;
             }
         })

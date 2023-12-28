@@ -12,21 +12,19 @@ import UserModal from './userUpdateModal';
 const TableAdmin = () => {
   const [list, setList] = useState([])
   const { userlist, setUserlist } = useContext(userContext);
-  useEffect(() => {
+
+  function setNewList(userlist) {
     setList(userlist)
-  }, [userlist])
+  }
+  useEffect(() => {
+    setNewList()
+  }, [])
   //should be memoized or stable
-  const columns = useMemo(
-    () => [
-      // {
-      //   accessorKey: 'id', //access nested data with dot notation
-      //   header: 'ID',
-      //   size: 150,
-      // },
+  const columns =useMemo(()=>[
       {
         accessorKey: 'id',
         header: 'modify',
-        size: 10,
+        size: 40,
         Cell: ({ cell }) => {
           return <><UserModal id={cell.getValue()} /></>
         }
@@ -56,18 +54,16 @@ const TableAdmin = () => {
         header: 'Spend',
         size: 10,
         Cell: ({ cell }) => {
-          return <p>₹ {cell.getValue()}</p>
+          return <>₹ {cell.getValue()}</>
         }
       },
-    ],
-    [],
-  );
+    ],[]);
 
   const table = useMaterialReactTable({
     columns,
     data: userlist, //data must be memoized or stable (useState, useMemo, defined outside of this component, etc.)
     paginationDisplayMode: 'pages',
-    initialState: { pagination: { pageSize: 5 } },
+    initialState: { pagination: { pageSize: 5 } , density: 'compact'},
   });
 
 

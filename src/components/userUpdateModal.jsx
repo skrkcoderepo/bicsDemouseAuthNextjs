@@ -1,239 +1,106 @@
-import { useState, forwardRef, useContext } from 'react';
+import { forwardRef, useContext } from 'react';
 import Button from '@mui/material/Button';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogContentText from '@mui/material/DialogContentText';
-import DialogTitle from '@mui/material/DialogTitle';
 import Slide from '@mui/material/Slide';
 import userContext from '@/context/usersContext';
 import * as React from 'react';
-import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
-
 import Link from 'next/link';
+import RenderTemplate from './template/renderTemplate';
 
-const Transition = forwardRef(function Transition(props, ref) {
-  return <Slide direction="up" ref={ref} {...props} />;
-});
-const ModalText1 = (props) => {
-  return <>{props.text}</>;
-};
 
-const RenderTemplate = (props) => {
-  const [form, setForm] = useState(props.val);
-  const inputTextSize = 150;
-  const edit = true;
-  function updateUser(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-    console.log(form);
-  }
-  function updating() {
-    props.userlist.find((val) => {
-      if (val.id == props.val.id) {
-        console.log('matchedvalue', val);
-        val.username = form.username;
-        val.age = form.age;
-        val.Jobtitle = form.Jobtitle;
-        val.purchased = form.purchased;
-        val.totalsales = form.totalsales;
-      }
-    });
-    props.setUserlist([...props.userlist]);
-    // console.log(userlist)
-    props.modal();
-  }
-  function addNewUser() {
-    form.id = Date.now();
-    console.log('create users', form);
-    props.setUserlist([...props.userlist, form]);
-    props.modal();
-  }
-  return (
-    <Box sx={{ flexGrow: 1 }}>
-      <br />
-      <Grid container spacing={2}>
-        <Grid item xs={4}>
-          <Grid container>
-            <Grid item xs={7}>
-              <span>
-                <ModalText1 text="username" />
-              </span>
-            </Grid>
-            <Grid item xs={5}>
-              <input
-                name="username"
-                style={{ width: inputTextSize }}
-                type="text"
-                onChange={(e) => updateUser(e)}
-                value={form.username}
-              />
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={7}>
-              <ModalText1 text="age" />
-            </Grid>
-            <Grid item xs={5}>
-              <input
-                name="age"
-                style={{ width: inputTextSize }}
-                onChange={(e) => updateUser(e)}
-                type="number"
-                value={form.age}
-              />
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={7}>
-              <ModalText1 text="Designation" />
-            </Grid>
-            <Grid item xs={5}>
-              <input
-                name="Jobtitle"
-                style={{ width: inputTextSize }}
-                onChange={(e) => updateUser(e)}
-                type="text"
-                value={form.Jobtitle}
-              />
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={7}>
-              <ModalText1 text="Purchased" />
-            </Grid>
-            <Grid item xs={5}>
-              <input
-                name="purchased"
-                style={{ width: inputTextSize }}
-                onChange={(e) => updateUser(e)}
-                type="number"
-                value={form.purchased}
-              />
-            </Grid>
-          </Grid>
-          <Grid container>
-            <Grid item xs={7}>
-              <ModalText1 text="spend" />
-            </Grid>
-            <Grid item xs={5}>
-              <input
-                name="totalsales"
-                style={{ width: inputTextSize }}
-                onChange={(e) => updateUser(e)}
-                type="number"
-                value={form.totalsales}
-              />
-            </Grid>
-          </Grid>
-        </Grid>
-        <Grid item xs={6}></Grid>
-      </Grid>
-      <DialogActions>
-        {props.updateState.update ? (
-          <Button
-            variant="contained"
-            color="success"
-            onClick={updating}
-          >
-            Update
-          </Button>
-        ) : (
-          ''
-        )}
-        {props.updateState.create ? (
-          <Button
-            variant="contained"
-            color="success"
-            onClick={addNewUser}
-          >
-            Create
-          </Button>
-        ) : (
-          ''
-        )}
-
-        <Button variant="contained" color="error" onClick={props.modal}>
-          {!props.updateState.update && !props.updateState.create
-            ? 'Close'
-            : 'Close '}
-        </Button>
-      </DialogActions>
-    </Box>
-  );
-};
 
 export default function UserModal(props) {
-  const [open, setOpen] = useState(false);
-  const [updateState, setUpdatestate] = useState(1);
-  // UpdateState = 1(readonly), 2(create), 3(update)
-  const { userlist, setUserlist } = useContext(userContext);
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
+    // UpdateState = 1(readonly), 2(create), 3(update), 4(Delete)
+    const { userlist, setUserlist, setCurdMode, curdMode } =
+        useContext(userContext);
 
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const FindUser = (props) => {
-    const checkid = parseInt(props.id);
-    let Profile;
-    userlist.find((val) => {
-      if (val.id == checkid) {
-        const template = <></>;
-        Profile = val;
-      }
-    });
-    console.log('this is the profile', Profile);
+    function UpdateMode(val) {
+        setCurdMode({ ...val });
+    }
     return (
-      <RenderTemplate
-        val={Profile}
-        modal={props.modal}
-        updateState={{ create: false, update: true }}
-        userlist={userlist}
-        setUserlist={setUserlist}
-      />
+        <>
+            <Grid container>
+                <Grid item xs={6}>
+                    <div>
+                        <Button
+                            variant="outlined"
+                            color="success"
+                            style={{ width: '100%', marginRight: '2px' }}
+                            onClick={() =>
+                                UpdateMode({
+                                    c: false,
+                                    u: true,
+                                    r: false,
+                                    d: false,
+                                    modalCurdDialog: true,
+                                    userID: props.id,
+                                })
+                            }
+                        >
+                            <i className="bi bi-pencil">
+                                <p style={{ fontSize: '5px', margin: '0px' }}>
+                                    Update
+                                </p>
+                            </i>
+                        </Button>
+                    </div>
+                </Grid>
+                <Grid item xs={6}>
+                    <div>
+                        <Link href={`/users/${props.id}`}>
+                            <Button
+                                style={{
+                                    width: '100%',
+                                    marginLeft: '2px',
+                                    marginRight: '2px',
+                                }}
+                                variant="outlined"
+                                color="warning"
+                            >
+                                <i
+                                    className="bi bi-eye"
+                                    style={{ marginBottom: '0px' }}
+                                >
+                                    <p
+                                        style={{
+                                            fontSize: '5px',
+                                            margin: '0px',
+                                        }}
+                                    >
+                                        View
+                                    </p>
+                                </i>
+                            </Button>
+                        </Link>
+                    </div>
+                </Grid>
+                <Grid item xs={12}>
+                    <Button
+                        style={{
+                            width: '100%',
+                            marginTop: '2px',
+                            marginLeft: '0px',
+                            marginRight: '0px',
+                        }}
+                        variant="contained"
+                        color="error"
+                        onClick={() =>
+                            UpdateMode({
+                                c: false,
+                                u: false,
+                                r: false,
+                                d: true,
+                                modalCurdDialog: true,
+                                userID: props.id,
+                            })
+                        }
+                    >
+                        Delete &nbsp;
+                        <i className="bi bi-trash3" />
+                    </Button>
+                </Grid>
+            </Grid>
+        </>
     );
-  };
-  function UpdateMode(val) {
-    setUpdatestate(parseInt(val));
-    handleClickOpen();
-  }
-  return (
-    <>
-      <Button
-        variant="outlined"
-        color="success"
-        onClick={() => UpdateMode(3)}
-      >
-        Edit &nbsp;&nbsp;
-        <i className="bi bi-pencil" />
-      </Button>
-      <Button variant="outlined" color="warning">
-        <Link href={`/users/${props.id}`}>
-          View &nbsp;
-          <i className="bi bi-eye" />
-        </Link>
-      </Button>
-      <Dialog
-        open={open}
-        TransitionComponent={Transition}
-        keepMounted
-        onClose={handleClose}
-        aria-describedby="alert-dialog-slide-description"
-      >
-        <DialogTitle>{'User Details'}</DialogTitle>
-        <DialogContent>
-          <DialogContentText id="alert-dialog-slide-description">
-            User Details are given below: This is just a demo for
-            Next js USE CLIENT
-            <br />
-          </DialogContentText>
-          <FindUser id={props.id} modal={handleClose} />
-        </DialogContent>
-      </Dialog>
-    </>
-  );
 }
 export { RenderTemplate };

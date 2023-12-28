@@ -4,7 +4,10 @@ const nextConfig = {
         styledComponents: true,
       },
       images:{
-        domains:['random.imagecdn.app']
+        remotePatterns:[{
+          protocol: 'https',
+          hostname: 'random.imagecdn.app',
+        }]
       }
 }
 

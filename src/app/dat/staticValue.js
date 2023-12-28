@@ -63,3 +63,23 @@ const mainSite = {
   }]
 }
 export default mainSite;
+const dummydata = [{
+  id: 12378,
+  username: "Mark",
+  age: 34,
+  working: "yes",
+  Jobtitle: "entrepreneur",
+  purchased: 3,
+  totalsales: 4534
+},{
+  id: 8438,
+  username: "Steve",
+  age: 30,
+  working: "yes",
+  Jobtitle: "entrepreneur",
+  purchased: 4,
+  totalsales: 5455
+}]
+export {
+  dummydata
+}

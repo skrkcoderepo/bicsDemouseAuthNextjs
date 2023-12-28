@@ -16,13 +16,13 @@
     "@mui/x-date-pickers": "^6.18.5",
     "bootstrap": "^5.3.2",
     "crypto-js": "^4.2.0",
-    "jquery": "^3.7.1",
     "js-cookie": "^3.0.5",
     "material-react-table": "^2.0.6",
     "next": "14.0.4",
     "react": "^18",
+    "react-countup": "^6.5.0",
     "react-dom": "^18",
-    "react-helmet": "^6.1.0"
+    "sweetalert2": "^11.10.1"
   },
   "devDependencies": {
     "eslint": "^8",
