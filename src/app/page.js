@@ -1,5 +1,3 @@
-import { useContext } from "react";
-
 export default function Home() {
 
     return (
@@ -7,6 +5,7 @@ export default function Home() {
           <section id="hero" className="d-flex flex-column justify-content-center">
             <div style={{ zIndex: 6 }} className="container aos-init aos-animate">
               <h1>Demo on Nextjs </h1>
+              <h5>Template credit to <a href="https://bootstrapmade.com/free-html-bootstrap-template-my-resume" target="_blank">bootstrapmade.com</a></h5>
             </div>
           </section>
         </>

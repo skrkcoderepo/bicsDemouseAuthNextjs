@@ -5,7 +5,8 @@ import * as React from 'react';
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
 import Slide from '@mui/material/Slide';
-import Typography from '@mui/material/Typography';
+import Avatar from '@mui/material/Avatar';
+import Chip from '@mui/material/Chip';
 import TextField from '@mui/material/TextField';
 import Swal from 'sweetalert2';
 import Dialog from '@mui/material/Dialog';
@@ -14,6 +15,7 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import CurdPopupTemplate from './popup_CurdMessage';
 import userContext from '@/context/usersContext';
+import Style from '@/app/styles/render.module.css'
 
 const Transition = forwardRef(function Transition(props, ref) {
     return <Slide direction="up" ref={ref} {...props} />;
@@ -31,7 +33,7 @@ const GenerateDialogModal = (props) => {
     });
 
     const [form, setForm] = useState();
-    if(!form){
+    if (!form) {
         setForm({
             id: '',
             username: '',
@@ -39,7 +41,7 @@ const GenerateDialogModal = (props) => {
             Jobtitle: '',
             purchased: '',
             totalsales: '',
-        })
+        });
     }
     const [edit, setEdit] = useState(true);
 
@@ -51,12 +53,11 @@ const GenerateDialogModal = (props) => {
         setCurdMode({ ...curdMode, modalCurdDialog: false });
     };
 
-        useEffect(()=>{
-            setForm(Profile)
-        },[Profile])
+    useEffect(() => {
+        setForm(Profile);
+    }, [Profile]);
 
     useEffect(() => {
-
         if (curdMode?.c) {
             createMode();
         }
@@ -125,157 +126,178 @@ const GenerateDialogModal = (props) => {
         closeModal();
     }
     return (
-        <><Box sx={{ flexGrow: 1 }}>
-            <Dialog
-                open={curdMode.modalCurdDialog}
-                TransitionComponent={Transition}
-                keepMounted
-                onClose={closeModal}
-                aria-describedby="alert-dialog-slide-description"
-            >
-                
-                    <DialogTitle>User Details</DialogTitle>
+        <>
+            <Box sx={{ flexGrow: 1 }}>
+                <Dialog
+                    open={curdMode.modalCurdDialog}
+                    TransitionComponent={Transition}
+                    keepMounted
+                    onClose={closeModal}
+                    aria-describedby="alert-dialog-slide-description"
+                >
+                    <DialogTitle>
+                        <div className={Style.context}>
+                            <div className={Style.area}>
+                                <ul className={Style.circles}>
+                                    <li></li><li></li><li></li><li></li>
+                                    <li></li><li></li><li></li><li></li>
+                                    <li></li><li></li><li></li><li></li>
+                                    <li></li><li></li><li></li><li></li>
+                                    <li></li><li></li><li></li><li></li>
+                                    <li></li><li></li><li></li><li></li>
+                                </ul>
+                            </div>
+                            <Chip
+                                style={{
+                                    fontSize: '1.5em',
+                                    width: '100%',
+                                    height: 'auto',
+                                    padding: '15px',
+                                    backgroundColor: "#1c1c1c",
+                                }}
+                                label="User Details"
+                                variant="contained"
+                                color="primary"
+                            />
+                            <hr />
+                        </div>
+                    </DialogTitle>
                     <DialogContent>
-                        <DialogContentText id="alert-dialog-slide-description"> 
-                                User Details are given below: This is just a demo for Next js USE CLIENT
-                        </DialogContentText>
-                            <Grid container spacing={2}>
-                                <Grid item xs={12} md={6}>
-                                    <Grid container>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label="username"
-                                                variant="filled" 
-                                                disabled={edit}
-                                                name="username"
-                                                style={{ width: inputTextSize }}
-                                                type="text"
-                                                onChange={(e) => updateUser(e)}
-                                                value={form?.username}
-                                                />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label="age"
-                                                variant="filled" 
-                                                disabled={edit}
-                                                name="age"
-                                                style={{width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.age}
-                                                />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label= "Job Title"
-                                                variant="filled" 
-                                                disabled={edit}
-                                                name="Jobtitle"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="text"
-                                                value={form?.Jobtitle}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label="Purchased"
-                                                variant="filled" 
-                                                disabled={edit}
-                                                name="purchased"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.purchased}
-                                            />
-                                        </Grid>
-                                    </Grid>
-                                    <Grid container>
-                                        <Grid item xs={12}>
-                                            <TextField
-                                                id="filled-multiline-flexible"
-                                                label= "Total Sales"
-                                                variant="filled" 
-                                                disabled={edit}
-                                                name="totalsales"
-                                                style={{ width: inputTextSize }}
-                                                onChange={(e) => updateUser(e)}
-                                                type="number"
-                                                value={form?.totalsales}
-                                            />
-                                        </Grid>
+                        <DialogContentText id="alert-dialog-slide-description"></DialogContentText>
+                        <Grid container spacing={2}>
+                            <Grid item xs={12} md={6}>
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="username"
+                                            variant="filled"
+                                            disabled={edit}
+                                            name="username"
+                                            style={{ width: inputTextSize }}
+                                            type="text"
+                                            onChange={(e) => updateUser(e)}
+                                            value={form?.username}
+                                        />
                                     </Grid>
                                 </Grid>
-                                <Grid item xs={12} md={6}>
+                                <Grid container>
                                     <Grid item xs={12}>
-                                        <CurdPopupTemplate />
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="age"
+                                            variant="filled"
+                                            disabled={edit}
+                                            name="age"
+                                            style={{ width: inputTextSize }}
+                                            onChange={(e) => updateUser(e)}
+                                            type="number"
+                                            value={form?.age}
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="Job Title"
+                                            variant="filled"
+                                            disabled={edit}
+                                            name="Jobtitle"
+                                            style={{ width: inputTextSize }}
+                                            onChange={(e) => updateUser(e)}
+                                            type="text"
+                                            value={form?.Jobtitle}
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="Purchased"
+                                            variant="filled"
+                                            disabled={edit}
+                                            name="purchased"
+                                            style={{ width: inputTextSize }}
+                                            onChange={(e) => updateUser(e)}
+                                            type="number"
+                                            value={form?.purchased}
+                                        />
+                                    </Grid>
+                                </Grid>
+                                <Grid container>
+                                    <Grid item xs={12}>
+                                        <TextField
+                                            id="filled-multiline-flexible"
+                                            label="Total Sales"
+                                            variant="filled"
+                                            disabled={edit}
+                                            name="totalsales"
+                                            style={{ width: inputTextSize }}
+                                            onChange={(e) => updateUser(e)}
+                                            type="number"
+                                            value={form?.totalsales}
+                                        />
                                     </Grid>
                                 </Grid>
                             </Grid>
+                            <Grid item xs={12} md={6}>
+                                <Grid item xs={12}>
+                                    <CurdPopupTemplate />
+                                </Grid>
+                            </Grid>
+                        </Grid>
                     </DialogContent>
                     <DialogActions>
                         <div>
-                        {curdMode?.u ? (
+                            {curdMode?.u ? (
+                                <Button
+                                    variant="contained"
+                                    color="success"
+                                    onClick={updating}
+                                >
+                                    Update
+                                </Button>
+                            ) : (
+                                ''
+                            )}
+                            {curdMode?.c ? (
+                                <Button
+                                    variant="contained"
+                                    color="success"
+                                    onClick={addNewUser}
+                                >
+                                    Create
+                                </Button>
+                            ) : (
+                                ''
+                            )}
+                            {curdMode?.d ? (
+                                <Button
+                                    variant="contained"
+                                    color="error"
+                                    onClick={() => deleteUser()}
+                                >
+                                    Delete
+                                </Button>
+                            ) : (
+                                ''
+                            )}
                             <Button
-                                variant="contained"
-                                color="success"
-                                onClick={updating}
-                            >
-                                Update
-                            </Button>
-                        ) : (
-                            ''
-                        )}
-                        {curdMode?.c ? (
-                            <Button
-                                variant="contained"
-                                color="success"
-                                onClick={addNewUser}
-                            >
-                                Create
-                            </Button>
-                        ) : (
-                            ''
-                        )}
-                        {curdMode?.d ? (
-                            <Button
-                                variant="contained"
+                                variant="outlined"
                                 color="error"
-                                onClick={() => deleteUser()}
-                                
+                                onClick={closeModal}
+                                style={{ marginLeft: '8px' }}
                             >
-                                Delete
+                                close
                             </Button>
-                        ) : (
-                            ''
-                        )}
-                        <Button
-                            variant="outlined"
-                            color="error"
-                            onClick={closeModal}
-                            style={{marginLeft: "8px"}}
-                        >
-                            close
-                        </Button>
                         </div>
                     </DialogActions>
-                
-            </Dialog>
-        </Box>
+                </Dialog>
+            </Box>
         </>
     );
 };
-
 
 export default GenerateDialogModal;
